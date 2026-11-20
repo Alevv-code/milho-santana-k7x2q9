@@ -1,1 +1,3 @@
-# milho-santana-k7x2q9
+# Milho 2026/27
+
+App de acompanhamento por estádio. Atualizado automaticamente.
