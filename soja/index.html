@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soja 2026/27 por estádio</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1f6b43">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Soja">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{
+  --bg:#f3f5f2; --panel:#ffffff; --ink:#18221c; --muted:#5d6b62; --line:#d9e0da;
+  --green:#1f6b43;
+  --c-des:#7a6a4f; --c-ins:#c4461f; --c-nem:#7b4fa3; --c-fun:#2562a8; --c-fol:#2c8a4a; --c-cob:#b7791f; --c-adj:#5d6b62; --warn:#b4380f;
+  --tagink:#ffffff;
+  --display:'Barlow Condensed','Arial Narrow','Helvetica Neue',Arial,sans-serif; --body:'Source Sans 3',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#111713; --panel:#192119; --ink:#e8efe9; --muted:#9aaa9f; --line:#2c372f; --green:#5fc48a;
+  --c-des:#c2b08c; --c-ins:#ff8a63; --c-nem:#c39be8; --c-fun:#7db3ee; --c-fol:#6fd08a; --c-cob:#f0b955; --c-adj:#9aaa9f; --warn:#ff9a72; --tagink:#0e1410; color-scheme:dark;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 var(--body);-webkit-text-size-adjust:100%}
+.wrap{max-width:1320px;margin:0 auto;padding:24px 16px 40px}
+h1{font:700 clamp(28px,4.6vw,46px)/1 var(--display);letter-spacing:.01em;margin:0 0 6px;text-transform:uppercase}
+.sub{color:var(--muted);margin:0 0 14px}
+.nav{display:none;margin:0 0 12px;font-size:14px}.nav a{color:var(--green);font-weight:600}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.tab{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:8px 16px;border-radius:999px;font:700 18px/1.1 var(--display);letter-spacing:.02em;text-transform:uppercase;cursor:pointer}
+.tab small{font:600 12px var(--body);text-transform:none;letter-spacing:0;color:var(--muted);margin-left:6px}
+.tab[aria-selected=true]{background:var(--green);border-color:var(--green);color:#fff}
+.tab[aria-selected=true] small{color:#e6f2ea}
+.panel[hidden]{display:none}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi b{display:block;font:700 30px/1.05 var(--display);color:var(--green);font-variant-numeric:tabular-nums}
+.kpi span{font-size:13px;color:var(--muted)}
+.board{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 14px 18px}
+.illus{position:relative}
+.illus img{display:block;width:100%;height:auto;border-radius:8px}
+.dot{position:absolute;bottom:-11px;width:22px;height:22px;margin-left:-11px;border-radius:50%;background:var(--green);color:#fff;
+  font:700 12px/22px var(--body);text-align:center;border:2px solid var(--panel)}
+.lead{display:none;position:relative;height:64px}
+.lead svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.lead path{fill:none;stroke:var(--green);stroke-width:1.5;stroke-dasharray:3 3}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:24px}
+.card{border:1px solid var(--line);border-top:4px solid var(--green);border-radius:10px;padding:12px;background:var(--bg)}
+.card h2{display:flex;align-items:center;gap:8px;margin:0 0 2px;font:700 28px/1 var(--display)}
+.card h2 i{font-style:normal;width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;font:700 12px/22px var(--body);text-align:center}
+.when{font-size:13px;color:var(--muted);margin:0 0 8px}
+.when em{font-style:normal;font-weight:600;color:var(--ink)}
+.grp{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:10px 0 4px}
+ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+li{display:flex;gap:8px;align-items:baseline;font-size:14px}
+li .t{flex:0 0 auto;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--tagink);border-radius:4px;padding:1px 5px;min-width:70px;text-align:center}
+li .d{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.t.des{background:var(--c-des)}.t.ins{background:var(--c-ins)}.t.nem{background:var(--c-nem)}.t.fun{background:var(--c-fun)}.t.fol{background:var(--c-fol)}.t.cob{background:var(--c-cob)}.t.adj{background:var(--c-adj)}
+.alert{margin:10px 0 0;font-size:13px;color:var(--warn);border-left:3px solid var(--warn);padding-left:8px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:16px 0 0;font-size:13px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.notes{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
+.note h3{margin:0 0 6px;font:700 20px/1 var(--display);text-transform:uppercase}
+.note p{margin:0 0 6px}.note p:last-child{margin:0}
+.src{margin-top:16px;font-size:12.5px;color:var(--muted)}
+.board.lines .lead{display:block}
+.board.lines .cards{margin-top:0;grid-template-columns:repeat(var(--n),1fr)}
+.board.lines .card h2 i{display:none}
+.board:not(.lines) .dot{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Soja 2026/27: aplicações por estádio</h1>
+  <p class="sub">Talhões 118 e Poste · Barracão · Santana 5 · registros até 20/11/2026</p>
+  <p class="nav" id="nav"><a href="../">← Ver o milho</a></p>
+  <div class="tabs" role="tablist"><button class="tab" role="tab" aria-selected="true">118 e Poste<small>DM 70IX70</small></button><button class="tab" role="tab" aria-selected="false">Barracão<small>BMX Guepardo IPRO</small></button><button class="tab" role="tab" aria-selected="false">Santana 5<small>BMX Tormenta CE</small></button></div>
+  <section class="panel" id="p0" role="tabpanel"><div class="kpis"><div class="kpi"><b>V3</b><span>Estimado em 24/11 (30 DAS)</span></div><div class="kpi"><b>204,8 ha</b><span>Plantio 22/10 a 28/10 · plantio médio 25/10</span></div><div class="kpi"><b>111 d</b><span>DM 70IX70, GM 7.0</span></div><div class="kpi"><b>08/12</b><span>R1 (início do florescimento) estimado</span></div><div class="kpi"><b>13/02</b><span>R8 (maturação plena) estimada</span></div><div class="kpi"><b>3</b><span>Dias de pulverização (11/10, 13/10, 30/10)</span></div><div class="kpi"><b>1</b><span>Coberturas (25/10)</span></div></div><section class="board" aria-label="Estádios da soja e aplicações, 118 e Poste"><div class="illus"><img src="soja_fases.svg" alt="Fases de desenvolvimento da soja, de VE a R8"></div><div class="lead"><svg class="ln" aria-hidden="true"></svg></div><div class="cards" style="--n:2"><article class="card" data-x="0.0080"><h2><i>1</i>Pré-plantio</h2><p class="when"><em>11/10 e 13/10</em> · antes do plantio</p><ul><li><span class="t des">Dessecação</span>Glifosato<span class="d">2 kg/ha</span></li><li><span class="t des">Dessecação</span>Judoka<span class="d">200 mL/ha</span></li><li><span class="t des">Dessecação</span>Clipper<span class="d">75 g/ha</span></li><li><span class="t des">Dessecação</span>Tritex<span class="d">300 mL/ha</span></li><li><span class="t des">Dessecação</span>Off Road<span class="d">2 L/ha</span></li><li><span class="t des">Dessecação</span>Fluroxipir<span class="d">1,4 L/ha</span></li><li><span class="t des">Dessecação</span>Terrador<span class="d">200 mL/ha</span></li><li><span class="t des">Dessecação</span>Cletodim<span class="d">1 L/ha</span></li><li><span class="t adj">Adjuvante</span>Exato<span class="d">100 mL/ha</span></li></ul></article><article class="card" data-x="0.0163"><h2><i>2</i>Pré-emergência</h2><p class="when"><em>25/10 e 30/10</em> · 1ª Verango (nematicida) · estimado, 1 a 5 DAS</p><div class="grp">Pulverização</div><ul><li><span class="t nem">Nematicida</span>Verango<span class="d">400 mL/ha</span></li></ul><div class="grp">Cobertura</div><ul><li><span class="t cob">Cobertura</span>Cloreto<span class="d">160 kg/ha</span></li></ul></article></div><div class="legend"><span><i style="background:var(--c-des)"></i>Dessecação / herbicida</span><span><i style="background:var(--c-ins)"></i>Inseticida</span><span><i style="background:var(--c-nem)"></i>Nematicida</span><span><i style="background:var(--c-fun)"></i>Fungicida / bactericida</span><span><i style="background:var(--c-fol)"></i>Foliar</span><span><i style="background:var(--c-cob)"></i>Cobertura</span><span><i style="background:var(--c-adj)"></i>Adjuvante e óleo</span></div></section><div class="notes"><div class="note"><h3>Situação do talhão</h3><p>Estádio estimado hoje (24/11): V3, 30 DAS. Próximo marco: R1 por volta de 08/12. Última aplicação lançada: 30/10.</p><p>Ciclo: ficha Don Mario, MG Triângulo (111 dias).</p></div></div></section>
+<section class="panel" id="p1" role="tabpanel" hidden><div class="kpis"><div class="kpi"><b>V5</b><span>Estimado em 24/11 (37 DAS)</span></div><div class="kpi"><b>148,4 ha</b><span>Plantio 15/10 a 20/10 · plantio médio 18/10</span></div><div class="kpi"><b>110 d</b><span>BMX Guepardo IPRO, GM 6.8</span></div><div class="kpi"><b>01/12</b><span>R1 (início do florescimento) estimado</span></div><div class="kpi"><b>05/02</b><span>R8 (maturação plena) estimada</span></div><div class="kpi"><b>2</b><span>Dias de pulverização (13/10, 20/11)</span></div><div class="kpi"><b>1</b><span>Coberturas (23/10)</span></div></div><section class="board" aria-label="Estádios da soja e aplicações, Barracão"><div class="illus"><img src="soja_fases.svg" alt="Fases de desenvolvimento da soja, de VE a R8"></div><div class="lead"><svg class="ln" aria-hidden="true"></svg></div><div class="cards" style="--n:3"><article class="card" data-x="0.0080"><h2><i>1</i>Pré-plantio</h2><p class="when"><em>13/10</em> · antes do plantio</p><ul><li><span class="t des">Dessecação</span>Glifosato<span class="d">2 kg/ha</span></li><li><span class="t des">Dessecação</span>Judoka<span class="d">200 mL/ha</span></li><li><span class="t des">Dessecação</span>Clipper<span class="d">75 g/ha</span></li><li><span class="t des">Dessecação</span>Tritex<span class="d">300 mL/ha</span></li><li><span class="t adj">Adjuvante</span>Exato<span class="d">100 mL/ha</span></li></ul></article><article class="card" data-x="0.0163"><h2><i>2</i>Pré-emergência</h2><p class="when"><em>23/10</em> · estimado, 5 DAS · adubação de cobertura</p><ul><li><span class="t cob">Cobertura</span>Cloreto<span class="d">160 kg/ha</span></li></ul></article><article class="card" data-x="0.3438"><h2><i>3</i>V4</h2><p class="when"><em>20/11</em> · Pós-emergência · estádio anotado na planilha</p><ul><li><span class="t des">Herbicida</span>Glifosato<span class="d">2 kg/ha</span></li><li><span class="t des">Herbicida</span>Imazetapir<span class="d">400 mL/ha</span></li><li><span class="t fun">Fungicida</span>Difenoconazol<span class="d">400 mL/ha</span></li><li><span class="t fun">Bactericida</span>Trichodermil<span class="d">500 mL/ha</span></li><li><span class="t ins">Inseticida</span>Legion<span class="d">400 mL/ha</span></li><li><span class="t fol">Foliar</span>Tonus<span class="d">300 g/ha</span></li><li><span class="t fol">Foliar</span>Kellus Inox<span class="d">500 g/ha</span></li><li><span class="t adj">Adjuvante</span>Exato<span class="d">100 mL/ha</span></li></ul></article></div><div class="legend"><span><i style="background:var(--c-des)"></i>Dessecação / herbicida</span><span><i style="background:var(--c-ins)"></i>Inseticida</span><span><i style="background:var(--c-nem)"></i>Nematicida</span><span><i style="background:var(--c-fun)"></i>Fungicida / bactericida</span><span><i style="background:var(--c-fol)"></i>Foliar</span><span><i style="background:var(--c-cob)"></i>Cobertura</span><span><i style="background:var(--c-adj)"></i>Adjuvante e óleo</span></div></section><div class="notes"><div class="note"><h3>Situação do talhão</h3><p>Estádio estimado hoje (24/11): V5, 37 DAS. Próximo marco: R1 por volta de 01/12. Última aplicação lançada: 20/11.</p><p>Ciclo: estimativa: a ficha Brasmax não informa os dias de ciclo.</p></div></div></section>
+<section class="panel" id="p2" role="tabpanel" hidden><div class="kpis"><div class="kpi"><b>V2</b><span>Estimado em 24/11 (26 DAS)</span></div><div class="kpi"><b>77,3 ha</b><span>Plantio 28/10 a 31/10 · plantio médio 29/10</span></div><div class="kpi"><b>114 d</b><span>BMX Tormenta CE, GM 7.4</span></div><div class="kpi"><b>14/12</b><span>R1 (início do florescimento) estimado</span></div><div class="kpi"><b>20/02</b><span>R8 (maturação plena) estimada</span></div><div class="kpi"><b>3</b><span>Dias de pulverização (11/10, 13/10, 05/11)</span></div><div class="kpi"><b>1</b><span>Coberturas (03/11)</span></div></div><section class="board" aria-label="Estádios da soja e aplicações, Santana 5"><div class="illus"><img src="soja_fases.svg" alt="Fases de desenvolvimento da soja, de VE a R8"></div><div class="lead"><svg class="ln" aria-hidden="true"></svg></div><div class="cards" style="--n:3"><article class="card" data-x="0.0080"><h2><i>1</i>Pré-plantio</h2><p class="when"><em>11/10 e 13/10</em> · antes do plantio</p><ul><li><span class="t des">Dessecação</span>Glifosato<span class="d">2 kg/ha</span></li><li><span class="t des">Dessecação</span>Judoka<span class="d">200 mL/ha</span></li><li><span class="t des">Dessecação</span>Clipper<span class="d">75 g/ha</span></li><li><span class="t des">Dessecação</span>Tritex<span class="d">300 mL/ha</span></li><li><span class="t des">Dessecação</span>Off Road<span class="d">2 L/ha</span></li><li><span class="t des">Dessecação</span>Fluroxipir<span class="d">1 L/ha</span></li><li><span class="t des">Dessecação</span>Terrador<span class="d">200 mL/ha</span></li><li><span class="t des">Dessecação</span>Cletodim<span class="d">1 L/ha</span></li><li><span class="t adj">Adjuvante</span>Exato<span class="d">100 mL/ha</span></li></ul></article><article class="card" data-x="0.0163"><h2><i>2</i>Pré-emergência</h2><p class="when"><em>03/11</em> · estimado, 5 DAS · adubação de cobertura</p><ul><li><span class="t cob">Cobertura</span>Cloreto<span class="d">160 kg/ha</span></li></ul></article><article class="card" data-x="0.0312"><h2><i>3</i>VE</h2><p class="when"><em>05/11</em> · 2ª dessecação · estimado, 7 DAS</p><ul><li><span class="t des">Herbicida</span>Glifosato<span class="d">2,5 kg/ha</span></li><li><span class="t des">Herbicida</span>Venture<span class="d">380 mL/ha</span></li><li><span class="t adj">Adjuvante</span>Exato<span class="d">100 mL/ha</span></li><li><span class="t adj">Óleo</span>Fusion<span class="d">200 mL/ha</span></li></ul></article></div><div class="legend"><span><i style="background:var(--c-des)"></i>Dessecação / herbicida</span><span><i style="background:var(--c-ins)"></i>Inseticida</span><span><i style="background:var(--c-nem)"></i>Nematicida</span><span><i style="background:var(--c-fun)"></i>Fungicida / bactericida</span><span><i style="background:var(--c-fol)"></i>Foliar</span><span><i style="background:var(--c-cob)"></i>Cobertura</span><span><i style="background:var(--c-adj)"></i>Adjuvante e óleo</span></div></section><div class="notes"><div class="note"><h3>Situação do talhão</h3><p>Estádio estimado hoje (24/11): V2, 26 DAS. Próximo marco: R1 por volta de 14/12. Última aplicação lançada: 05/11.</p><p>Ciclo: ficha Brasmax, 303 MG Triângulo (114 dias).</p></div></div></section>
+  <div class="notes"><div class="note"><h3>Como os estádios são estimados</h3><p>Dias após o plantio (DAS), pela média ponderada das áreas já plantadas. VE aos 6 DAS, V1 aos 15, V4 aos 33 (calibrado pelo "V 4" anotado em 20/11 no Barracão) e um nó novo a cada 3,5 dias. R1 a 40% do ciclo, R3 a 52%, R5 a 65%, R7 a 90% e R8 ao fim do ciclo.</p><p>Se você anotar o estádio na coluna F da planilha de aplicação (ex.: "V 4"), a data passa a usar o valor anotado.</p></div><div class="note"><h3>Datas a corrigir no estoque</h3><p>CONTROLE DE DEFENSIVOS SOJA, aba MOVIMENTAÇÃO: 9 linhas com data inválida ou futura, ignoradas aqui: 17/102027 (9).</p></div></div>
+  <p class="src">Fontes: planilhas da pasta APLICAÇÕES SOJA (aplicação e cobertura) e CONTROLE DE DEFENSIVOS SOJA.xlsx, pasta 2026 PARA 2027. Datas de plantio informadas pelo produtor; ciclos das fichas técnicas Brasmax e Don Mario. Ilustração esquemática própria. Atualizado em 24/11/2026 10:15.</p>
+</div>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab')), panels=[].slice.call(document.querySelectorAll('.panel'));
+  function draw(p){
+    var board=p.querySelector('.board'), illus=p.querySelector('.illus'), lead=p.querySelector('.lead'),
+        svg=p.querySelector('.ln'), cards=[].slice.call(p.querySelectorAll('.card'));
+    [].slice.call(illus.querySelectorAll('.dot')).forEach(function(d){d.parentNode.removeChild(d);});
+    svg.innerHTML='';
+    var iw=illus.clientWidth;
+    var on=!p.hidden && iw>0 && window.innerWidth>=1080 && cards.length<=7;
+    board.className=on?'board lines':'board';
+    if(!on)return;
+    var ih=lead.clientHeight, base=illus.getBoundingClientRect().left, ns='http://www.w3.org/2000/svg', n=cards.length;
+    svg.setAttribute('viewBox','0 0 '+iw+' '+ih);
+    cards.forEach(function(c,i){
+      var mx=Math.min(Math.max(parseFloat(c.getAttribute('data-x'))*iw,12),iw-12);
+      var r=c.getBoundingClientRect(), cx=r.left+r.width/2-base;
+      var dot=document.createElement('div');dot.className='dot';dot.textContent=i+1;dot.style.left=mx+'px';illus.appendChild(dot);
+      var y=ih*(0.85-0.6*i/Math.max(n-1,1));
+      var p2=document.createElementNS(ns,'path');
+      p2.setAttribute('d','M'+mx+' 0 V'+y+' H'+cx+' V'+ih);
+      svg.appendChild(p2);
+    });
+  }
+  function show(i){
+    panels.forEach(function(p,j){p.hidden=(j!==i);});
+    tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i?'true':'false');});
+    try{history.replaceState(null,'','#t'+i);}catch(e){}
+    draw(panels[i]);
+  }
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){show(i);});});
+  window.addEventListener('resize',function(){panels.forEach(draw);});
+  panels.forEach(function(p){var im=p.querySelector('img'); im.addEventListener('load',function(){draw(p);});});
+  var m=/^#t(\d)$/.exec(location.hash); show(m&&panels[+m[1]]?+m[1]:0);
+  if(/^https?:$/.test(location.protocol)) document.getElementById('nav').style.display='block';
+})();
+if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
+}
+</script>
+</body>
+</html>
