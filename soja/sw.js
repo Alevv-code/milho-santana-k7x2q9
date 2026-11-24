@@ -1,5 +1,5 @@
 // Rede primeiro: abre sempre a versão mais nova; sem internet, usa a última salva no aparelho.
-const CACHE = 'soja-v1';
+const CACHE = 'soja-v2';
 self.addEventListener('install', e => { self.skipWaiting(); });
 self.addEventListener('activate', e => { e.waitUntil(self.clients.claim()); });
 self.addEventListener('fetch', e => {
